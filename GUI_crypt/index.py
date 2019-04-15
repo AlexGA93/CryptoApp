@@ -25,15 +25,21 @@ tkinter.Label(root, text='Please, enter here your text...',
 tkinter.Entry(root).pack()
 
 # Buttons Matrix(calling functions in another script and return the result to print here)
-frame = tkinter.Frame(root, bg='blue')
+frame = tkinter.Frame(root, bg='gray')
 frame.pack(ipadx=30, ipady=10)
 
-frame2 = tkinter.Frame(frame, bg='red')
-frame2.pack(ipadx=50, ipady=50)
+frame2 = tkinter.Frame(frame, bg='gray')
+frame2.pack(ipadx=10, ipady=10)
+frame3 = tkinter.Frame(frame, bg='gray')
+frame3.pack(ipadx=10, ipady=10)
 
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
+
+tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
+tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
+tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
 # Frame with buttons inside???
 
 # Text Area to print result
