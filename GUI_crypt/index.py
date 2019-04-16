@@ -8,31 +8,45 @@ root = tkinter.Tk()
 # Not Resizable
 root.resizable(False, False)
 # giving window's size
-root.minsize(width=500, height=500)
-root.maxsize(width=900, height=900)
+root.minsize(width=500, height=700)
 # Window Title
 root.title('CryptoApp')
 # background
 root.configure(bg='gray')
 
+bg_gray = 'gray'
+ipad_x1 = 10
+ipad_x2 = 30
+ipad_x3 = 50
+ipad_y1 = 10
+ipad_y2 = 30
+
 # Label
-tkinter.Label(root, text='Welcome To CryptoApp', bg='gray',
+tkinter.Label(root, text='Welcome To CryptoApp', bg='#716060',
               font=("Helvetica", 16)).pack(fill=tkinter.BOTH)
 
-# Separator to first block of content
-tkinter.Label(root, text='Please, enter here your text...',
-              bg='gray', font=("Helvetica", 13)).pack(ipadx=50, ipady=50)
-tkinter.Entry(root).pack()
+#Sections(frames)
+frame_entry = tkinter.Frame(root,bg=bg_gray)
+frame_entry.pack(ipadx=ipad_x1,ipady=ipad_y1)
 
-# Buttons Matrix(calling functions in another script and return the result to print here)
-frame = tkinter.Frame(root, bg='gray')
-frame.pack(ipadx=30, ipady=10)
+frame_matrix = tkinter.Frame(root, bg=bg_gray)
+frame_matrix.pack(ipadx=30, ipady=ipad_y1)
 
-frame2 = tkinter.Frame(frame, bg='gray')
-frame2.pack(ipadx=10, ipady=10)
-frame3 = tkinter.Frame(frame, bg='gray')
-frame3.pack(ipadx=10, ipady=10)
+frame2 = tkinter.Frame(frame_matrix, bg=bg_gray)
+frame2.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
+frame3 = tkinter.Frame(frame_matrix, bg=bg_gray)
+frame3.pack(ipadx=ipad_x1, ipady=ipad_y1)
+
+frame_text = tkinter.Frame(root, bg=bg_gray )
+frame_text.pack()
+
+#section 1- Inputs
+tkinter.Label(frame_entry, text='Please, enter here your text...',
+              bg=bg_gray, font=("Helvetica", 13)).pack(ipadx=ipad_x3,ipady=ipad_y2,pady=1)
+tkinter.Entry(frame_entry).pack()
+
+#section 2- button matrix
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
@@ -40,11 +54,17 @@ tkinter.Button(frame2, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
 tkinter.Button(frame3, text='example1').pack(side=tkinter.LEFT)
-# Frame with buttons inside???
 
-# Text Area to print result
+#section 3- output
+quote = "hello wordl!"
 
+tkinter.Canvas(frame_text).pack(pady=100)
 
-# Button creation with root as a windos where it'll render
-ttk.Button(root, text='Quit', command=quit).place(x=400, y=450)
+'''
+text_out = tkinter.Text(root)
+text_out.pack(side = n, padx=10, pady=10)
+text_out.insert(tkinter.INSERT,quote)
+'''
+#Quit Button
+ttk.Button(root, text='Quit', command=quit).place(x=400, y=659)
 root.mainloop()
