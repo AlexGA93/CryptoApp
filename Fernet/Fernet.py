@@ -42,11 +42,10 @@ def Decryption_Message(key_generated, encripted):
 
 if __name__ == '__main__':
     Generate_key()
-
     key_generated = Read_key()
 
     message = "Example string"
-
     encripted = Encryption_Message(message)
 
     decripted = Decryption_Message(key_generated, encripted)
+    
