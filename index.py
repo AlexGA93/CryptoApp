@@ -18,21 +18,24 @@ ipad_x3 = 50
 ipad_y1 = 10
 ipad_y2 = 30
 
+height_button = 1
+width_button = 15
+
 def gui_inputs(frame_entry):
     #section 1- Inputs
     tkinter.Label(frame_entry, text='Please, enter here your text...',bg=bg_gray, font=("Helvetica", 13)).pack(ipadx=ipad_x3,ipady=ipad_y2,pady=1)
-    tkinter.Entry(frame_entry).pack(expand=True, fill='both')
+    tkinter.Entry(frame_entry).pack(expand=True)
 
 def gui_buttonMatrix(frame2, frame3):
     #section 2- button matrix
 #-----------------------------------------------------------------------
-    tkinter.Button(frame2, text='AES').pack(side=tkinter.LEFT)
-    tkinter.Button(frame2, text='Blake').pack(side=tkinter.LEFT)
-    tkinter.Button(frame2, text='Caesar').pack(side=tkinter.LEFT)
+    tkinter.Button(frame2,height=height_button, width=width_button , text='AES').pack(side = tkinter.LEFT)
+    tkinter.Button(frame2,height=height_button, width=width_button , text='Blake').pack(side=tkinter.LEFT)
+    tkinter.Button(frame2,height=height_button, width=width_button , text='Caesar').pack(side=tkinter.LEFT)
 
-    tkinter.Button(frame3, text='Fernet').pack(side=tkinter.LEFT)
-    tkinter.Button(frame3, text='Hashing').pack(side=tkinter.LEFT)
-    tkinter.Button(frame3, text='Inverted Binary').pack(side=tkinter.LEFT)
+    tkinter.Button(frame3,height=height_button, width=width_button , text='Fernet').pack(side=tkinter.LEFT)
+    tkinter.Button(frame3,height=height_button, width=width_button , text='Hashing').pack(side=tkinter.LEFT)
+    tkinter.Button(frame3,height=height_button, width=width_button ,text='Inverted Binary').pack(side=tkinter.LEFT)
 
     #tkinter.Button(frame4, text='example1').pack(side=tkinter.LEFT)
     #tkinter.Button(frame4, text='example1').pack(side=tkinter.LEFT)
