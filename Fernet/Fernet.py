@@ -7,12 +7,13 @@ from cryptography.fernet import Fernet
 def Generate_key():
     # Generate random key each time is called
     key_generated = Fernet.generate_key()
-    # print(key)
+    print(key_generated)
     # Saving the key into a file (byte type)
+    '''
     file_write = open('key.key', 'wb')
     file_write.write(key_generated)
     file_write.close()  # putting key into the file created and close
-
+    '''
 
 def Read_key():
     # Reading key from byte file
