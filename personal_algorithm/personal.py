@@ -3,7 +3,6 @@
 def toBinary(mensaje):
     # conversion to str
     mensaje_binario = ' '.join(format(ord(x), 'b') for x in mensaje)
-
     # conversion to list
     bynary_array = mensaje_binario.split()
 

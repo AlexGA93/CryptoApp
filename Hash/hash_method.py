@@ -3,7 +3,7 @@ import binascii
 
 
 def hashing_methods(password_hash):
-    # Hashing methods
+    # All Hashing methods
     hash_md5 = hashlib.md5(password_hash.encode())
     hash_sha1 = hashlib.sha1(password_hash.encode())
     hash_sha224 = hashlib.sha224(password_hash.encode())

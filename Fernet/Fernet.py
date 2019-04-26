@@ -15,6 +15,7 @@ def Generate_key():
     file_write.close()  # putting key into the file created and close
     '''
 
+
 def Read_key():
     # Reading key from byte file
     file_read = open('key.key', 'rb')
@@ -26,9 +27,8 @@ def Read_key():
 
 def Encryption_Message(message):
     message_encoded = message.encode()
-    f = Fernet(Read_key())
-    encrypted = f.encrypt(message_encoded)
-
+    fernet = Fernet(Read_key())
+    encrypted = fernet.encrypt(message_encoded)
     return encrypted
 
 
@@ -49,4 +49,3 @@ if __name__ == '__main__':
     encripted = Encryption_Message(message)
 
     decripted = Decryption_Message(key_generated, encripted)
-    

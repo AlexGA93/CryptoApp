@@ -22,7 +22,6 @@ def caesar(data, order):
                 Ascii_to_Lchr = chr(65)
             message += Ascii_to_Lchr
     print(message)
-
 # Caesar Decipher def
 
 

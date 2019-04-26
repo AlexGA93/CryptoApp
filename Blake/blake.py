@@ -32,6 +32,7 @@ def encrypt_blake2s(message, size):
     encrypted_2s = blake2s_variable.hexdigest()
 
     print(encrypted_2s)
+
     return encrypted_2s
 
 
