@@ -31,7 +31,7 @@ def Encryption_Message(message):
     encrypted = fernet.encrypt(message_encoded)
     return encrypted
 
-
+'''
 def Decryption_Message(key_generated, encripted):
     f2 = Fernet(key_generated)
     decrypted = decrypted = f2.decrypt(encripted)  # Bytes object
@@ -39,13 +39,13 @@ def Decryption_Message(key_generated, encripted):
     original_message = decrypted.decode()  # turn object into a string
 
     return original_message
-
+'''
 
 if __name__ == '__main__':
     Generate_key()
     key_generated = Read_key()
 
-    message = "Example string"
-    encripted = Encryption_Message(message)
+    message = "Example string"#input
+    encripted = Encryption_Message(message)#FINAL DATA
 
-    decripted = Decryption_Message(key_generated, encripted)
+    #decripted = Decryption_Message(key_generated, encripted)

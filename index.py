@@ -1,4 +1,5 @@
-import tkinter
+#importing modules
+import tkinter as tk
 from tkinter import ttk
 # -----------------------------------------------
 # importing encryption scripts
@@ -12,7 +13,7 @@ from Hash import hash_method
 from Personal_algorithm import personal
 # -----------------------------------------------
 bg_gray = 'gray'
-ipad_x1 = 10
+ipad_x1 = 100
 ipad_x2 = 30
 ipad_x3 = 50
 ipad_y1 = 10
@@ -20,88 +21,51 @@ ipad_y2 = 30
 
 height_button = 1
 width_button = 15
-
-
-def gui_inputs(frame_entry):
-    # section 1- Inputs
-    tkinter.Label(frame_entry, text='Please, enter here your text...', bg=bg_gray, font=(
-        "Helvetica", 13)).pack(ipadx=ipad_x3, ipady=ipad_y2, pady=1)
-    tkinter.Entry(frame_entry).pack(expand=True)
-
-
-def gui_buttonMatrix(frame2, frame3):
-    # section 2- button matrix
-    # ----------------------------------------------------------------------
-    tkinter.Button(frame2, height=height_button,
-                   width=width_button, text='AES').pack(side=tkinter.LEFT)
-    tkinter.Button(frame2, height=height_button,
-                   width=width_button, text='Blake').pack(side=tkinter.LEFT)
-    tkinter.Button(frame2, height=height_button, width=width_button,
-                   text='Caesar').pack(side=tkinter.LEFT)
-
-    tkinter.Button(frame3, height=height_button, width=width_button,
-                   text='Fernet').pack(side=tkinter.LEFT)
-    tkinter.Button(frame3, height=height_button, width=width_button,
-                   text='Hashing').pack(side=tkinter.LEFT)
-    tkinter.Button(frame3, height=height_button, width=width_button,
-                   text='Inverted Binary').pack(side=tkinter.LEFT)
-
-    #tkinter.Button(frame4, text='example1').pack(side=tkinter.LEFT)
-    #tkinter.Button(frame4, text='example1').pack(side=tkinter.LEFT)
-    #tkinter.Button(frame4, text='example1').pack(side=tkinter.LEFT)
-
-# -----------------------------------------------------------------------
-
-
-def gui_output(frame_text):
-    # section 3- output
-    tkinter.Canvas(frame_text).pack(pady=10, padx=50)
-
+def gui_buttonMatrix(frame2,frame3):
+    
+def gui_inputs(root):
+    entry = ttk.Entry(root, text='Enter text here',justify=tk.CENTER, show='*',width = 30 )
+    #entry.config(state=tk.NORMAL)
+    entry.place()
 
 def gui_quit(root):
-    # Quit Button
-    ttk.Button(root, text='Quit', command=quit).place(x=400, y=659)
-
+    #Quit Button
+    cancel = ttk.Button(root, text='Quit', command = quit).place(x=400, y=659)
 
 def gui_frames(root):
-    # Label
-    tkinter.Label(root, text='Welcome To CryptoApp', bg='#716060',
-                  font=("Helvetica", 16)).pack(fill=tkinter.BOTH)
-# -----------------------------------------------------------------------
-    # Sections(frames)
-    frame_entry = tkinter.Frame(root, bg=bg_gray)
+    #Label
+    label = ttk.Label(root, text='Welcome To CryptoApp', font=("Helvetica", 16), background = '#716060', anchor = 'center')
+    label.pack(fill = tk.BOTH)
+
+    #Frames
+    frame_entry = ttk.Frame(root)
     frame_entry.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
-    frame_matrix = tkinter.Frame(root, bg=bg_gray)
+    frame_matrix = ttk.Frame(root)
     frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y1, pady=30)
 
-    frame2 = tkinter.Frame(frame_matrix, bg=bg_gray)
+    frame2 = ttk.Frame(frame_matrix)
     frame2.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
-    frame3 = tkinter.Frame(frame_matrix, bg=bg_gray)
+    frame3 = ttk.Frame(frame_matrix)
     frame3.pack(ipadx=ipad_x1, ipady=ipad_y1)
-
-    #frame4 = tkinter.Frame(frame_matrix, bg = bg_gray)
-    #frame4.pack(ipadx=ipad_x1 ,ipady = ipad_y1)
-
-    frame_text = tkinter.Frame(root, bg=bg_gray)
-    frame_text.pack()
-# -----------------------------------------------------------------------
+    
     gui_inputs(frame_entry)
+    gui_buttonMatrix(frame2,frame3)
+    '''
     gui_buttonMatrix(frame2, frame3)
     gui_output(frame_text)
+    '''
 
-
-def gui_function(root):
+def gui_functions(root):
     gui_frames(root)
     gui_quit(root)
 
-
 def main():
-    # Creating window
-    root = tkinter.Tk()
+    #window creation
+    root = tk.Tk()
     # Not Resizable
-    root.resizable(False, False)
+    #root.resizable(False, False)
     # giving window's size
     root.minsize(width=500, height=700)
     # Window Title
@@ -109,9 +73,12 @@ def main():
     # background
     root.configure(bg='gray')
 
-    gui_function(root)
+    #calling methods
+    gui_functions(root)
+
     root.mainloop()
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
+
+

@@ -21,10 +21,11 @@ def caesar(data, order):
             if ord(Ascii_to_Lchr) > 122:
                 Ascii_to_Lchr = chr(65)
             message += Ascii_to_Lchr
-    print(message)
+    
+    return message
 # Caesar Decipher def
 
-
+'''
 def NonCaesar(data, order):
     message = ''
 
@@ -44,12 +45,15 @@ def NonCaesar(data, order):
                 Ascii_to_Lchr = chr(65)
             message += Ascii_to_Lchr
     print(message)
+    return message
+ '''   
 
 
 def code():
-    message = input('Give me a message: ')
-    order = int(input('Give me a order number to cipher: '))
-
+    message = input('Give me a message: ')#input message GUI
+    order = int(input('Give me a order number to cipher: ')) #input integer GUI
+    return(caesar(message, order))
+    '''
     option = input('What do you want to do? Cipher[C] or Decipher[D]? ')
     if option == 'C':
         caesar(message, order)
@@ -57,7 +61,7 @@ def code():
         NonCaesar(message, order)
     else:
         print('This code only admits the two last options.')
-
-
+'''
 if __name__ == "__main__":
-    code()
+    final_data = code()
+    print(final_data)

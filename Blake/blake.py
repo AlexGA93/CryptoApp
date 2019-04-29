@@ -22,7 +22,7 @@ def encrypt_blake2b(message, size):
     blake2b_variable.update(message.encode())
     encrypted_2b = blake2b_variable.hexdigest()
 
-    print(encrypted_2b)
+    #print(encrypted_2b)
     return encrypted_2b
 
 
@@ -31,10 +31,13 @@ def encrypt_blake2s(message, size):
     blake2s_variable.update(message.encode())
     encrypted_2s = blake2s_variable.hexdigest()
 
-    print(encrypted_2s)
+    #print(encrypted_2s)
 
     return encrypted_2s
 
+def data_returned(blake_2b, blake_2s):
+    data = ("Blake Encryption: \n"+"Blake2b: "+ blake_2b+"\nBlake2s: "+blake_2s)
+    return data
 
 if __name__ == "__main__":
 
@@ -43,3 +46,5 @@ if __name__ == "__main__":
 
     blake_2b = encrypt_blake2b(string, size)
     blake_2s = encrypt_blake2s(string, size)
+
+    data_returned(blake_2b, blake_2s)

@@ -47,7 +47,7 @@ def hashing_methods(password_hash):
 
 def main():
     password_hash = input('Password: ')  # GUI Input
-    hashing_methods(password_hash)
+    final_data = hashing_methods(password_hash)#FINAL DATA
 
 
 if __name__ == "__main__":
