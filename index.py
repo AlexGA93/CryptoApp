@@ -1,7 +1,6 @@
 # importing modules
 import tkinter as tk
 from tkinter import ttk
-from tkinter.ttk import *
 # -----------------------------------------------
 # importing encryption scripts
 # from [carpeta] import [script]
@@ -15,23 +14,47 @@ from personal_algorithm import personal
 # -----------------------------------------------
 bg_gray = 'gray'
 ipad_x1 = 200
-ipad_x2 = 200
-ipad_x3 = 50
+ipad_x2 = 1
+ipad_x3 = 30
 ipad_y1 = 50
 ipad_y2 = 30
+ipad_y3 = 30
 
 height_button = 1
 width_button = 15
 
 
-def gui_buttonMatrix(frame2, frame3):
+def gui_output(frame_output):
+    output = tk.Text(frame_output).grid() #no es el widget que buscamos
 
-    style_buttons = ttk.Style("Style_buttons.TButton")
-    style_buttons.configure()
+
+
+def gui_buttonMatrix(frame_matrix):
+
+    style_buttons = ttk.Style()
+    style_buttons.configure("Style_buttons.TButton")
     # buttons
-    button1 = ttk.Button(frame2, text="button1").pack()
-    button1 = ttk.Button(frame2, text="button1").pack()
-    button1 = ttk.Button(frame2, text="button1").pack()
+    button1 = ttk.Button(frame_matrix, text="button1")
+    button2 = ttk.Button(frame_matrix, text="button2")
+    button3 = ttk.Button(frame_matrix, text="button3")
+
+    button4 = ttk.Button(frame_matrix, text="button4")
+    button5 = ttk.Button(frame_matrix, text="button5")
+    button6 = ttk.Button(frame_matrix, text="button6")
+
+    button7 = ttk.Button(frame_matrix, text="button7")
+    button8 = ttk.Button(frame_matrix, text="button8")
+    button9 = ttk.Button(frame_matrix, text="button9")
+
+    button1.grid(row = 0, column = 0, padx = 10, pady = 10)
+    button2.grid(row = 0, column = 1, padx = 10, pady = 10)
+    button3.grid(row = 0, column = 2, padx = 10, pady = 10)
+    button4.grid(row = 1, column = 0, padx = 10, pady = 10)
+    button5.grid(row = 1, column = 1, padx = 10, pady = 10)
+    button6.grid(row = 1, column = 2, padx = 10, pady = 10)
+    button7.grid(row = 2, column = 0, padx = 10, pady = 10)
+    button8.grid(row = 2, column = 1, padx = 10, pady = 10)
+    button9.grid(row = 2, column = 2, padx = 10, pady = 10)
 
 
 def gui_inputs(frame_entry):
@@ -61,22 +84,18 @@ def gui_frames(root):
     style_buttns = ttk.Style()
     style_buttns.configure("FrameB.TFrame", background='blue')
     frame_matrix = ttk.Frame(root, style='FrameB.TFrame')
-    frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y1)
+    frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y2)
 
-    # Frame2 and 3
-
-    frame2 = ttk.Frame(frame_matrix)
-    frame2.pack(ipadx=ipad_x1, ipady=ipad_y1)
-
-    frame3 = ttk.Frame(frame_matrix)
-    frame3.pack(ipadx=ipad_x1, ipady=ipad_y1)
+    #Frame Text(output)
+    style_output = ttk.Style()
+    style_output.configure("Frame_output.TFrame", background = "orange")
+    frame_output = ttk.Frame(root, style = 'Frame_output.TFrame')
+    frame_output.pack(ipadx = ipad_x3, ipady = ipad_y3)
 
     gui_inputs(frame_entry)
-    gui_buttonMatrix(frame2, frame3)
-
-    '''
-    gui_output(frame_text)
-    '''
+    gui_buttonMatrix(frame_matrix)
+    gui_output(frame_output)
+    
 
 
 def gui_functions(root):
