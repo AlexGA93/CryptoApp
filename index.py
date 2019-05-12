@@ -15,18 +15,18 @@ from personal_algorithm import personal
 bg_gray = 'gray'
 ipad_x1 = 200
 ipad_x2 = 1
-ipad_x3 = 30
+ipad_x3 = 1
 ipad_y1 = 50
 ipad_y2 = 30
-ipad_y3 = 30
+ipad_y3 = 1
 
 height_button = 1
 width_button = 15
 
 
 def gui_output(frame_output):
-    output = tk.Text(frame_output).grid() #no es el widget que buscamos
-
+    output = ttk.Label(frame_output)
+    output.pack(ipadx=190, ipady = 150)
 
 
 def gui_buttonMatrix(frame_matrix):
@@ -76,19 +76,19 @@ def gui_frames(root):
     label.pack(fill=tk.BOTH)
 
     style_entry = ttk.Style()
-    style_entry.configure("Frame_entry.TFrame", background="black")
+    style_entry.configure("Frame_entry.TFrame", background="gray")
     # Frames
     frame_entry = ttk.Frame(root, style="Frame_entry.TFrame")
     frame_entry.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
     style_buttns = ttk.Style()
-    style_buttns.configure("FrameB.TFrame", background='blue')
+    style_buttns.configure("FrameB.TFrame", background='gray')
     frame_matrix = ttk.Frame(root, style='FrameB.TFrame')
     frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y2)
 
     #Frame Text(output)
     style_output = ttk.Style()
-    style_output.configure("Frame_output.TFrame", background = "orange")
+    style_output.configure("Frame_output.TFrame", background = "gray")
     frame_output = ttk.Frame(root, style = 'Frame_output.TFrame')
     frame_output.pack(ipadx = ipad_x3, ipady = ipad_y3)
 
