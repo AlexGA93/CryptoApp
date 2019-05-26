@@ -1,16 +1,20 @@
 # importing modules
+
 import tkinter as tk
 from tkinter import ttk
+
 # -----------------------------------------------
 # importing encryption scripts
 # from [carpeta] import [script]
 #    [script].funcion()
+'''
 from AES_method import aes_method
 from Blake import blake
 from Caesar import Caesar
 from Fernet import Fernet
 from Hash import hash_method
 from personal_algorithm import personal
+'''
 # -----------------------------------------------
 bg_gray = 'gray'
 ipad_x1 = 200
@@ -76,19 +80,19 @@ def gui_frames(root):
     label.pack(fill=tk.BOTH)
 
     style_entry = ttk.Style()
-    style_entry.configure("Frame_entry.TFrame", background="gray")
+    style_entry.configure("Frame_entry.TFrame", background=bg_gray)
     # Frames
     frame_entry = ttk.Frame(root, style="Frame_entry.TFrame")
     frame_entry.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
     style_buttns = ttk.Style()
-    style_buttns.configure("FrameB.TFrame", background='gray')
+    style_buttns.configure("FrameB.TFrame", background=bg_gray)
     frame_matrix = ttk.Frame(root, style='FrameB.TFrame')
     frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y2)
 
     #Frame Text(output)
     style_output = ttk.Style()
-    style_output.configure("Frame_output.TFrame", background = "gray")
+    style_output.configure("Frame_output.TFrame", background = bg_gray)
     frame_output = ttk.Frame(root, style = 'Frame_output.TFrame')
     frame_output.pack(ipadx = ipad_x3, ipady = ipad_y3)
 

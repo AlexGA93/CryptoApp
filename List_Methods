@@ -1,11 +1,13 @@
-[done] caesar
-[done] fernet
-[done] hashing
-       key derivation (not resistant against brute-force attacks)
-       hashlib.pbkdf2_hmac(has_name, password,salt,iterations, dklen=None)
+Algorithms
+------------------
+1.AES method
+2.Blake
+3.Caesar
+4.Fernet
+5.Hash
+6.Personal_algorithm
+7.Atbash
 
-AES
-[done] personal
-[done] blake2
-    blake2b --> optimized for 64-bit platforms and produces digests of any size between 1 and 64 bytes
-    blake2s-->optimized for 8- to 32-bit platforms and produces digests of any size between 1 and 32 bytes
+Posibles opciones
+------------------
+Transposicion columnar --> http://rodrigogr.com/blog/cifrado-de-transposicion/
