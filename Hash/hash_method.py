@@ -2,16 +2,15 @@ import hashlib
 import binascii
 
 
-def hashing_methods(password_hash):
+def hashing_methods(message, iterations):
     # All Hashing methods
-    hash_md5 = hashlib.md5(password_hash.encode())
-    hash_sha1 = hashlib.sha1(password_hash.encode())
-    hash_sha224 = hashlib.sha224(password_hash.encode())
-    hash_sha256 = hashlib.sha256(password_hash.encode())
-    hash_sha384 = hashlib.sha384(password_hash.encode())
-    hash_sha512 = hashlib.sha512(password_hash.encode())
+    hash_md5 = hashlib.md5(message.encode())
+    hash_sha1 = hashlib.sha1(message.encode())
+    hash_sha224 = hashlib.sha224(message.encode())
+    hash_sha256 = hashlib.sha256(message.encode())
+    hash_sha384 = hashlib.sha384(message.encode())
+    hash_sha512 = hashlib.sha512(message.encode())
 
-    iterations = 100000
     kd = hashlib.pbkdf2_hmac('sha256', b'password', b'salt', iterations)
     key_deri = binascii.hexlify(kd)
 
@@ -26,7 +25,7 @@ def hashing_methods(password_hash):
     sha512_digest = hash_sha512.hexdigest()
 
     # Type = tuple
-    output = (" Input:  ", password_hash,
+    output = (" Input:  ", message,
               "\n Output: \n md5: ", md5_digest,
               "\n sha1: ", sha1_digest,
               "\n sha224: ", sha224_digest,
@@ -41,13 +40,14 @@ def hashing_methods(password_hash):
 
     result = str+"\n key derivation: "+k_d
 
-    print(result)
     return result
 
 
 def main():
-    password_hash = input('Password: ')  # GUI Input
-    final_data = hashing_methods(password_hash)#FINAL DATA
+    message_hash = input('message: ')  # GUI Input
+    iterations = 100000  # From INDEX.PY
+    final_data = hashing_methods(message_hash, iterations)  # FINAL DATA
+    # print(final_data)
 
 
 if __name__ == "__main__":

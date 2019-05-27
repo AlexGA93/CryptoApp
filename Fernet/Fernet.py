@@ -8,6 +8,9 @@ def Generate_key():
     # Generate random key each time is called
     key_generated = Fernet.generate_key()
     print(key_generated)
+
+    return key_generated
+
     # Saving the key into a file (byte type)
     '''
     file_write = open('key.key', 'wb')
@@ -16,6 +19,7 @@ def Generate_key():
     '''
 
 
+'''
 def Read_key():
     # Reading key from byte file
     file_read = open('key.key', 'rb')
@@ -23,13 +27,15 @@ def Read_key():
     file_read.close()
 
     return key_readed
+'''
 
 
-def Encryption_Message(message):
+def Encryption_Message(message, key):
     message_encoded = message.encode()
-    fernet = Fernet(Read_key())
+    fernet = Fernet(key)  # fernet = Fernet(key_generated)
     encrypted = fernet.encrypt(message_encoded)
     return encrypted
+
 
 '''
 def Decryption_Message(key_generated, encripted):
@@ -41,11 +47,18 @@ def Decryption_Message(key_generated, encripted):
     return original_message
 '''
 
-if __name__ == '__main__':
-    Generate_key()
-    key_generated = Read_key()
 
-    message = "Example string"#input
-    encripted = Encryption_Message(message)#FINAL DATA
+def main():
+    key = Generate_key()
+
+    # To create a key's document
+    #key_generated = Read_key()
+
+    message = "Example string"  # message from INDEX.PY
+    encripted = Encryption_Message(message, key)  # FINAL DATA
+
+    # print(encripted)
 
     #decripted = Decryption_Message(key_generated, encripted)
+if __name__ == '__main__':
+    main()
