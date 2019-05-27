@@ -7,14 +7,16 @@ from tkinter import ttk
 # importing encryption scripts
 # from [carpeta] import [script]
 #    [script].funcion()
-'''
+
 from AES_method import aes_method
+from Atbash import atbash
 from Blake import blake
 from Caesar import Caesar
 from Fernet import Fernet
 from Hash import hash_method
-from personal_algorithm import personal
-'''
+from Personal_algorithm import personal
+from TranspMod import transmod
+
 # -----------------------------------------------
 bg_gray = 'gray'
 ipad_x1 = 200
@@ -28,49 +30,16 @@ height_button = 1
 width_button = 15
 
 
-def gui_output(frame_output):
-    output = ttk.Label(frame_output)
-    output.pack(ipadx=190, ipady = 150)
-
-
-def gui_buttonMatrix(frame_matrix):
-
-    style_buttons = ttk.Style()
-    style_buttons.configure("Style_buttons.TButton")
-    # buttons
-    button1 = ttk.Button(frame_matrix, text="button1")
-    button2 = ttk.Button(frame_matrix, text="button2")
-    button3 = ttk.Button(frame_matrix, text="button3")
-
-    button4 = ttk.Button(frame_matrix, text="button4")
-    button5 = ttk.Button(frame_matrix, text="button5")
-    button6 = ttk.Button(frame_matrix, text="button6")
-
-    button7 = ttk.Button(frame_matrix, text="button7")
-    button8 = ttk.Button(frame_matrix, text="button8")
-    button9 = ttk.Button(frame_matrix, text="button9")
-
-    button1.grid(row = 0, column = 0, padx = 10, pady = 10)
-    button2.grid(row = 0, column = 1, padx = 10, pady = 10)
-    button3.grid(row = 0, column = 2, padx = 10, pady = 10)
-    button4.grid(row = 1, column = 0, padx = 10, pady = 10)
-    button5.grid(row = 1, column = 1, padx = 10, pady = 10)
-    button6.grid(row = 1, column = 2, padx = 10, pady = 10)
-    button7.grid(row = 2, column = 0, padx = 10, pady = 10)
-    button8.grid(row = 2, column = 1, padx = 10, pady = 10)
-    button9.grid(row = 2, column = 2, padx = 10, pady = 10)
-
-
-def gui_inputs(frame_entry):
-    label = ttk.Label(frame_entry, text="Insert Text here...", anchor='center')
-    label.place(x=77, y=50)
-    entry = ttk.Entry(frame_entry)
-    entry.place(x=180, y=50)
-
-
 def gui_quit(root):
     # Quit Button
-    cancel = ttk.Button(root, text='Quit', command=quit).place(x=400, y=659)
+    cancel = ttk.Button(root, text='Quit', command=quit).place(x=400, y=700)
+
+
+def pprint(data):
+    print('Calling Caesar method')
+    print(data)
+    # calling caesar script
+    Caesar.gui(data)
 
 
 def gui_frames(root):
@@ -90,16 +59,55 @@ def gui_frames(root):
     frame_matrix = ttk.Frame(root, style='FrameB.TFrame')
     frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y2)
 
-    #Frame Text(output)
+    # Frame Text(output)
     style_output = ttk.Style()
-    style_output.configure("Frame_output.TFrame", background = bg_gray)
-    frame_output = ttk.Frame(root, style = 'Frame_output.TFrame')
-    frame_output.pack(ipadx = ipad_x3, ipady = ipad_y3)
+    style_output.configure("Frame_output.TFrame", background=bg_gray)
+    frame_output = ttk.Frame(root, style='Frame_output.TFrame')
+    frame_output.pack(ipadx=ipad_x3, ipady=ipad_y3)
 
-    gui_inputs(frame_entry)
-    gui_buttonMatrix(frame_matrix)
-    gui_output(frame_output)
-    
+    # ---------------------------------------------------------------
+    label = ttk.Label(frame_entry, text="Insert Text here...", anchor='center')
+    label.place(x=77, y=50)
+
+    # INPUT
+    entry = ttk.Entry(frame_entry)
+    entry.place(x=180, y=50)
+    # ---------------------------------------------------------------
+    style_buttons = ttk.Style()
+    style_buttons.configure("Style_buttons.TButton")
+    # buttons
+    button1 = ttk.Button(frame_matrix, text="button1")
+    button2 = ttk.Button(frame_matrix, text="button2")
+    button3 = ttk.Button(frame_matrix, text="button3")
+
+    button4 = ttk.Button(frame_matrix, text="Caesar",
+                         command=lambda: pprint(entry.get()))
+    button5 = ttk.Button(frame_matrix, text="button5")
+    button6 = ttk.Button(frame_matrix, text="button6")
+
+    button7 = ttk.Button(frame_matrix, text="button7")
+    button8 = ttk.Button(frame_matrix, text="button8")
+    button9 = ttk.Button(frame_matrix, text="button9")
+
+    button10 = ttk.Button(frame_matrix, text="button10")
+    button11 = ttk.Button(frame_matrix, text="button11")
+    button12 = ttk.Button(frame_matrix, text="button12")
+
+    button1.grid(row=0, column=0, padx=10, pady=10)
+    button2.grid(row=0, column=1, padx=10, pady=10)
+    button3.grid(row=0, column=2, padx=10, pady=10)
+    button4.grid(row=1, column=0, padx=10, pady=10)
+    button5.grid(row=1, column=1, padx=10, pady=10)
+    button6.grid(row=1, column=2, padx=10, pady=10)
+    button7.grid(row=2, column=0, padx=10, pady=10)
+    button8.grid(row=2, column=1, padx=10, pady=10)
+    button9.grid(row=2, column=2, padx=10, pady=10)
+    button10.grid(row=3, column=0, padx=10, pady=10)
+    button11.grid(row=3, column=1, padx=10, pady=10)
+    button12.grid(row=3, column=2, padx=10, pady=10)
+    # ---------------------------------------------------------------
+    output = ttk.Label(frame_output)
+    output.pack(ipadx=190, ipady=150)
 
 
 def gui_functions(root):
@@ -111,9 +119,9 @@ def main():
     # window creation
     root = tk.Tk()
     # Not Resizable
-    #root.resizable(False, False)
+    root.resizable(False, False)
     # giving window's size
-    root.minsize(width=500, height=700)
+    root.minsize(width=500, height=750)
     # Window Title
     root.title('CryptoApp')
     # background
