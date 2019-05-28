@@ -27,12 +27,3 @@ def toBinary(mensaje):
 
     # string_inverted
     return string_inverted
-
-
-def main():
-    mensaje = 'Hello World'  # INPUT
-    final_data = toBinary(mensaje)  # FINAL DATA
-
-
-if __name__ == "__main__":
-    main()

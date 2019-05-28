@@ -6,7 +6,7 @@ from Cryptodome import Random
 from Cryptodome.Cipher import AES
 
 
-def encrypt():
+def encrypt(text):
     # 32 bytes key
     key = ''.join(chr(random.randint(0, 0x7e))for i in range(32))
     #print('key: '+key)
@@ -18,13 +18,6 @@ def encrypt():
     aes = pyaes.AESModeOfOperationCTR(key_encoded)
 
     message = aes.encrypt(plaintext)
-    return message
+    message_str = str(message)
 
-
-def main():
-    result = encrypt()  # FINAL DATA
-    #print("resultado: {}".format(result))
-
-
-if __name__ == '__main__':
-    main()
+    return message_str

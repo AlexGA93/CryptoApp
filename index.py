@@ -30,28 +30,52 @@ ipad_y3 = 1
 height_button = 1
 width_button = 15
 
-def saltaPantalla():#renderizamos ventana para recoger dato adicional
-    app = tk.Tk()
-    answer = simpledialog.askinteger("Key","Give me a key: ",parent=app)
+
+def popupscreen(root):  # render to get additional data
+    #app = tk.Tk()
+    # pp.geometry("1x1")
+    answer = simpledialog.askinteger(
+        "Key", "Give me a key: ", parent=root)
     return answer
 
 
-def methods(method,value,textlbl):#botones llaman funcion donde se comprueba metodoy se envia la info y se recibe la respuesta del script
-    var='Not found'
-    if method == 'CAESAR':
-        g=saltaPantalla()
-        print(g)
-        var = Caesar.caesar(value,g)
-        print(var)
-
+# working with 'button's code', 'key' and label's text variable to update
+def methods(method, value, textlbl, root):
+    #
+    if method == 'AES':
+        var = aes_method.encrypt(value)
         textlbl.set(var)
 
-def ButtoneventCaesar(data):
-    print('String input: {}'.format(data))
-    print('Calling Caesar method...')
+    if method == 'ATB':
+        var = atbash.Atbash_encrypt(value)
+        textlbl.set(var)
 
-    # calling caesar script
-    Caesar.gui(data)
+    if method == 'BLK':
+        f = popupscreen(root)
+        var = blake.main(value, f)
+        textlbl.set(var)
+
+    if method == 'CAESAR':
+        g = popupscreen(root)  # additional data to Caesar's method
+        var = Caesar.caesar(value, g)  # caesar function from script
+        textlbl.set(var)  # updating label value
+
+    if method == 'FNT':
+        var = Fernet.main(value)
+        textlbl.set(var)
+
+    if method == 'HSH':
+        h = popupscreen(root)
+        var = hash_method.hashing_methods(value, h)
+        textlbl.set(var)
+    if method == 'BNR':
+        var = personal.toBinary(value)
+        textlbl.set(var)
+
+    if method == 'TRANS':
+        f = popupscreen(root)
+        var = transmod.encryption(value, f)
+        textlbl.set(var, font=("Helvetica", 9))
 
 
 def gui_quit(root):
@@ -94,37 +118,49 @@ def gui_frames(root):
     style_buttons.configure("Style_buttons.TButton")
 
     # Update label value?
-    text=StringVar()
+    text = StringVar()
     text.set('Data Ouput')
-    outputlbl = ttk.Label(frame_output, width=10, textvariable=text, font=("Helvetica", 10))
+    outputlbl = ttk.Label(frame_output, width=10,
+                          textvariable=text, font=("Helvetica", 10))
     outputlbl.pack(ipadx=190, ipady=150)
 
     # buttons
-    button1 = ttk.Button(frame_matrix, text="AES")
-    button2 = ttk.Button(frame_matrix, text="Atbash")
-    button3 = ttk.Button(frame_matrix, text="Blake")
+    aesButton = ttk.Button(frame_matrix, text="AES",
+                           command=lambda: methods('AES', entry.get(), text, root))
 
-    button4 = ttk.Button(frame_matrix, text="Caesar",
-                         command=lambda: methods('CAESAR',entry.get(),text))
-    button5 = ttk.Button(frame_matrix, text="Fernet")
-    button6 = ttk.Button(frame_matrix, text="Hash")
+    atbashButton = ttk.Button(frame_matrix, text="Atbash", command=lambda: methods(
+        'ATB', entry.get(), text, root))
 
-    button7 = ttk.Button(frame_matrix, text="DoubleBin")
-    button8 = ttk.Button(frame_matrix, text="Transposition")
+    blakeButton = ttk.Button(frame_matrix, text="Blake", command=lambda: methods(
+        'BLK', entry.get(), text, root))
+
+    caesarButton = ttk.Button(frame_matrix, text="Caesar",
+                              command=lambda: methods('CAESAR', entry.get(), text, root))
+
+    fernetButton = ttk.Button(frame_matrix, text="Fernet", command=lambda: methods(
+        'FNT', entry.get(), text, root))
+
+    hashButton = ttk.Button(frame_matrix, text="Hash", command=lambda: methods(
+        'HSH', entry.get(), text, root))
+
+    doubleBinButton = ttk.Button(frame_matrix, text="DoubleBin", command=lambda: methods(
+        'BNR', entry.get(), text, root))
+
+    transpositionButton = ttk.Button(
+        frame_matrix, text="Transposition", command=lambda: methods('TRANS', entry.get(), text, root))
+
     button9 = ttk.Button(frame_matrix, text="[Not Avaible]")
 
-    button1.grid(row=0, column=0, padx=10, pady=10)
-    button2.grid(row=0, column=1, padx=10, pady=10)
-    button3.grid(row=0, column=2, padx=10, pady=10)
-    button4.grid(row=1, column=0, padx=10, pady=10)
-    button5.grid(row=1, column=1, padx=10, pady=10)
-    button6.grid(row=1, column=2, padx=10, pady=10)
-    button7.grid(row=2, column=0, padx=10, pady=10)
-    button8.grid(row=2, column=1, padx=10, pady=10)
+    aesButton.grid(row=0, column=0, padx=10, pady=10)
+    atbashButton.grid(row=0, column=1, padx=10, pady=10)
+    blakeButton.grid(row=0, column=2, padx=10, pady=10)
+    caesarButton.grid(row=1, column=0, padx=10, pady=10)
+    fernetButton.grid(row=1, column=1, padx=10, pady=10)
+    hashButton.grid(row=1, column=2, padx=10, pady=10)
+    doubleBinButton.grid(row=2, column=0, padx=10, pady=10)
+    transpositionButton.grid(row=2, column=1, padx=10, pady=10)
     button9.grid(row=2, column=2, padx=10, pady=10)
     # ---------------------------------------------------------------
-
-    
 
 
 def gui_functions(root):

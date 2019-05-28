@@ -1,10 +1,3 @@
-# importing module.py
-# import message_to_code
-
-
-# importing index's entry value
-# from ... import index
-
 
 def caesar(data, key):
     encryptMessage = ''
@@ -25,7 +18,4 @@ def caesar(data, key):
                 Ascii_to_Lchr = chr(65)
             encryptMessage += Ascii_to_Lchr
 
-    
     return encryptMessage
-
-

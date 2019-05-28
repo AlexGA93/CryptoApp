@@ -43,17 +43,11 @@ def data_returned(blake_2b, blake_2s):
     return data
 
 
-def main():
-    string = 'Prueba'  # message from INDEX.PY
-    size = 20  # size done by INDEX.PY
+def main(message, size):
 
-    blake_2b = encrypt_blake2b(string, size)
-    blake_2s = encrypt_blake2s(string, size)
+    blake_2b = encrypt_blake2b(message, size)
+    blake_2s = encrypt_blake2s(message, size)
 
     data = data_returned(blake_2b, blake_2s)  # string
     print(data)
-
-
-if __name__ == "__main__":
-
-    main()
+    return data

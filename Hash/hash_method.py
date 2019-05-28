@@ -34,21 +34,12 @@ def hashing_methods(message, iterations):
               "\n sha512: ", sha512_digest)
 
     # convert tuple to string
-    str = ''.join(output)
+    str_data = ''.join(output)
     # convert key derivation into string
     k_d = key_deri.decode("utf-8")
 
-    result = str+"\n key derivation: "+k_d
+    result = str_data+"\n key derivation: "+k_d
+
+    print(result)
 
     return result
-
-
-def main():
-    message_hash = input('message: ')  # GUI Input
-    iterations = 100000  # From INDEX.PY
-    final_data = hashing_methods(message_hash, iterations)  # FINAL DATA
-    # print(final_data)
-
-
-if __name__ == "__main__":
-    main()

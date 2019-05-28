@@ -21,19 +21,3 @@ def encryption(message, key):
 
     # list into string and return
     return ''.join(ciphermessage)
-
-
-def main():
-    # message to encrypt
-    message = 'Hi my name is Alejandro'  # len(message) > key
-    # print(message)
-    # key
-    key = 5  # key*key matrix
-    # function
-    ciphertext = encryption(message, key)
-
-    # print(ciphertext)
-
-
-if __name__ == "__main__":
-    main()
