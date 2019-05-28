@@ -30,16 +30,17 @@ height_button = 1
 width_button = 15
 
 
+def ButtoneventCaesar(data):
+    print('String input: {}'.format(data))
+    print('Calling Caesar method...')
+
+    # calling caesar script
+    Caesar.gui(data)
+
+
 def gui_quit(root):
     # Quit Button
     cancel = ttk.Button(root, text='Quit', command=quit).place(x=400, y=700)
-
-
-def pprint(data):
-    print('Calling Caesar method')
-    print(data)
-    # calling caesar script
-    Caesar.gui(data)
 
 
 def gui_frames(root):
@@ -76,22 +77,18 @@ def gui_frames(root):
     style_buttons = ttk.Style()
     style_buttons.configure("Style_buttons.TButton")
     # buttons
-    button1 = ttk.Button(frame_matrix, text="button1")
-    button2 = ttk.Button(frame_matrix, text="button2")
-    button3 = ttk.Button(frame_matrix, text="button3")
+    button1 = ttk.Button(frame_matrix, text="AES")
+    button2 = ttk.Button(frame_matrix, text="Atbash")
+    button3 = ttk.Button(frame_matrix, text="Blake")
 
     button4 = ttk.Button(frame_matrix, text="Caesar",
-                         command=lambda: pprint(entry.get()))
-    button5 = ttk.Button(frame_matrix, text="button5")
-    button6 = ttk.Button(frame_matrix, text="button6")
+                         command=lambda: ButtoneventCaesar(entry.get()))
+    button5 = ttk.Button(frame_matrix, text="Fernet")
+    button6 = ttk.Button(frame_matrix, text="Hash")
 
-    button7 = ttk.Button(frame_matrix, text="button7")
-    button8 = ttk.Button(frame_matrix, text="button8")
-    button9 = ttk.Button(frame_matrix, text="button9")
-
-    button10 = ttk.Button(frame_matrix, text="button10")
-    button11 = ttk.Button(frame_matrix, text="button11")
-    button12 = ttk.Button(frame_matrix, text="button12")
+    button7 = ttk.Button(frame_matrix, text="DoubleBin")
+    button8 = ttk.Button(frame_matrix, text="Transposition")
+    button9 = ttk.Button(frame_matrix, text="[Not Avaible]")
 
     button1.grid(row=0, column=0, padx=10, pady=10)
     button2.grid(row=0, column=1, padx=10, pady=10)
@@ -102,9 +99,6 @@ def gui_frames(root):
     button7.grid(row=2, column=0, padx=10, pady=10)
     button8.grid(row=2, column=1, padx=10, pady=10)
     button9.grid(row=2, column=2, padx=10, pady=10)
-    button10.grid(row=3, column=0, padx=10, pady=10)
-    button11.grid(row=3, column=1, padx=10, pady=10)
-    button12.grid(row=3, column=2, padx=10, pady=10)
     # ---------------------------------------------------------------
     output = ttk.Label(frame_output)
     output.pack(ipadx=190, ipady=150)

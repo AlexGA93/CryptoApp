@@ -1,69 +1,41 @@
 # importing module.py
 # import message_to_code
 
-# caesar function
 
-'''
-def caesar(data, order):
-    message = ''
-    for x in data:
-        if x == ' ':
-            message += ' '
-        chr_to_Ascii = ord(x)
-        if(chr_to_Ascii >= 65 and chr_to_Ascii <= 90):
-            Ascii_to_Uchr = chr(chr_to_Ascii+order)
-            if (ord(Ascii_to_Uchr) > 90):
-                Ascii_to_Uchr = chr(97)
-            message += Ascii_to_Uchr
-
-        elif(chr_to_Ascii >= 97 and chr_to_Ascii <= 122):  # trabajamos con minusculas
-            Ascii_to_Lchr = chr(chr_to_Ascii+order)
-            if ord(Ascii_to_Lchr) > 122:
-                Ascii_to_Lchr = chr(65)
-            message += Ascii_to_Lchr
-
-    return message
-
-
-def main():
-    message = input('Give me a message: ')  # input message GUI
-    # input integer GUI
-    order = int(input('Give me a order number to cipher: '))
-
-    data = caesar(message, order)
-    print(data)
-
-
-if __name__ == "__main__":
-    main()
-'''
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 # importing index's entry value
 #from ... import index
 
 
 def caesar(data, order):
-    # print(data)
-    message = ''
-    for x in data:
-        if x == ' ':
-            message += ' '
-        chr_to_Ascii = ord(x)
-        if(chr_to_Ascii >= 65 and chr_to_Ascii <= 90):
-            Ascii_to_Uchr = chr(chr_to_Ascii+order)
-            print(Ascii_to_Uchr)
-            if (ord(Ascii_to_Uchr) > 90):
-                Ascii_to_Uchr = chr(97)
-            message += Ascii_to_Uchr
+    int(order)
+    if type(order) is int:
+        message = ''
+        for x in data:
+            if x == ' ':
+                message += ' '
+            chr_to_Ascii = ord(x)
+            if(chr_to_Ascii >= 65 and chr_to_Ascii <= 90):  # upper
+                Ascii_to_Uchr = chr(chr_to_Ascii+order)
 
-        elif(chr_to_Ascii >= 97 and chr_to_Ascii <= 122):  # trabajamos con minusculas
-            Ascii_to_Lchr = chr(chr_to_Ascii+order)
-            if ord(Ascii_to_Lchr) > 122:
-                Ascii_to_Lchr = chr(65)
-            message += Ascii_to_Lchr
+                if (ord(Ascii_to_Uchr) > 90):
+                    Ascii_to_Uchr = chr(97)
+                message += Ascii_to_Uchr
 
-    print(message)
+            elif(chr_to_Ascii >= 97 and chr_to_Ascii <= 122):  # lower
+                Ascii_to_Lchr = chr(chr_to_Ascii+order)
+                if ord(Ascii_to_Lchr) > 122:
+                    Ascii_to_Lchr = chr(65)
+                message += Ascii_to_Lchr
+
+        print(message)
+    else:
+        print('Its not a number. Please try again.')
+        # funcion renderizar vetana de advertencia
+        messagebox.showinfo(
+            "Ups!", "Did you enter a number? Please, try again.")
 
 
 def gui_entry(frame_entry, message):
@@ -71,7 +43,7 @@ def gui_entry(frame_entry, message):
     label.place(x=80, y=10)
 
     # print message imported
-    label = ttk.Label(frame_entry, text="TEXT IMPORTED", anchor='center')
+    label = ttk.Label(frame_entry, text=message, anchor='center')
     label.place(x=200, y=10)
 
     # entry
