@@ -5,7 +5,14 @@ Application to encode our string to see every algorithm with GUI in python
 We'll have a full-python GUI where you'll put your string and it'll be encoded according to the algorithm that we chose  
 
 ## installing
-[pending to complete the project...]
+If you are working on Ubuntu, you'll need to install some issues to work with some cryptography modules:
+```bash
+pip install pyaes --user
+sudo apt-get install build-essential python-dev #for python2
+sudo apt-get install build-essential python3-dev #for python3
+python3 -m Cryptodome.SelfTest
+```
+help: https://pycryptodome.readthedocs.io/en/latest/src/installation.html#compiling-in-linux-ubuntu
 
 ## Running CryptoApp
 Running this app is so easy. You only need to be located at the Gui's folder and initiate the script wit the next command:

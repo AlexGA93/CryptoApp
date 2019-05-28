@@ -2,7 +2,8 @@
 
 import tkinter as tk
 from tkinter import ttk
-
+from tkinter import simpledialog
+from tkinter import StringVar, IntVar
 # -----------------------------------------------
 # importing encryption scripts
 # from [carpeta] import [script]
@@ -14,7 +15,7 @@ from Blake import blake
 from Caesar import Caesar
 from Fernet import Fernet
 from Hash import hash_method
-from Personal_algorithm import personal
+from personal_algorithm import personal
 from TranspMod import transmod
 
 # -----------------------------------------------
@@ -29,6 +30,21 @@ ipad_y3 = 1
 height_button = 1
 width_button = 15
 
+def saltaPantalla():#renderizamos ventana para recoger dato adicional
+    app = tk.Tk()
+    answer = simpledialog.askinteger("Key","Give me a key: ",parent=app)
+    return answer
+
+
+def methods(method,value,textlbl):#botones llaman funcion donde se comprueba metodoy se envia la info y se recibe la respuesta del script
+    var='Not found'
+    if method == 'CAESAR':
+        g=saltaPantalla()
+        print(g)
+        var = Caesar.caesar(value,g)
+        print(var)
+
+        textlbl.set(var)
 
 def ButtoneventCaesar(data):
     print('String input: {}'.format(data))
@@ -76,13 +92,20 @@ def gui_frames(root):
     # ---------------------------------------------------------------
     style_buttons = ttk.Style()
     style_buttons.configure("Style_buttons.TButton")
+
+    # Update label value?
+    text=StringVar()
+    text.set('Data Ouput')
+    outputlbl = ttk.Label(frame_output, width=10, textvariable=text, font=("Helvetica", 10))
+    outputlbl.pack(ipadx=190, ipady=150)
+
     # buttons
     button1 = ttk.Button(frame_matrix, text="AES")
     button2 = ttk.Button(frame_matrix, text="Atbash")
     button3 = ttk.Button(frame_matrix, text="Blake")
 
     button4 = ttk.Button(frame_matrix, text="Caesar",
-                         command=lambda: ButtoneventCaesar(entry.get()))
+                         command=lambda: methods('CAESAR',entry.get(),text))
     button5 = ttk.Button(frame_matrix, text="Fernet")
     button6 = ttk.Button(frame_matrix, text="Hash")
 
@@ -101,11 +124,7 @@ def gui_frames(root):
     button9.grid(row=2, column=2, padx=10, pady=10)
     # ---------------------------------------------------------------
 
-    # Update label value?
-    output = ttk.Label(
-        frame_output, width=10, text="Encryptation: \n{}".format(Caesar.submitResult), font=(
-            "Helvetica", 10))
-    output.pack(ipadx=190, ipady=150)
+    
 
 
 def gui_functions(root):
@@ -124,7 +143,6 @@ def main():
     root.title('CryptoApp')
     # background
     root.configure(bg='gray')
-
     # calling methods
     gui_functions(root)
 
