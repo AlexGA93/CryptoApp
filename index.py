@@ -100,7 +100,11 @@ def gui_frames(root):
     button8.grid(row=2, column=1, padx=10, pady=10)
     button9.grid(row=2, column=2, padx=10, pady=10)
     # ---------------------------------------------------------------
-    output = ttk.Label(frame_output)
+
+    # Update label value?
+    output = ttk.Label(
+        frame_output, width=10, text="Encryptation: \n{}".format(Caesar.submitResult), font=(
+            "Helvetica", 10))
     output.pack(ipadx=190, ipady=150)
 
 

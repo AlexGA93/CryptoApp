@@ -4,38 +4,36 @@
 
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
+
 # importing index's entry value
-#from ... import index
+# from ... import index
 
 
-def caesar(data, order):
-    int(order)
-    if type(order) is int:
-        message = ''
-        for x in data:
-            if x == ' ':
-                message += ' '
-            chr_to_Ascii = ord(x)
-            if(chr_to_Ascii >= 65 and chr_to_Ascii <= 90):  # upper
-                Ascii_to_Uchr = chr(chr_to_Ascii+order)
+def submitResult(message):
+    return message
 
-                if (ord(Ascii_to_Uchr) > 90):
-                    Ascii_to_Uchr = chr(97)
-                message += Ascii_to_Uchr
 
-            elif(chr_to_Ascii >= 97 and chr_to_Ascii <= 122):  # lower
-                Ascii_to_Lchr = chr(chr_to_Ascii+order)
-                if ord(Ascii_to_Lchr) > 122:
-                    Ascii_to_Lchr = chr(65)
-                message += Ascii_to_Lchr
+def caesar(data, key):
+    encryptMessage = ''
+    for x in data:
+        if x == ' ':
+            encryptMessage += ' '
+        chr_to_Ascii = ord(x)
+        if(chr_to_Ascii >= 65 and chr_to_Ascii <= 90):  # upper
+            Ascii_to_Uchr = chr(chr_to_Ascii+key)
 
-        print(message)
-    else:
-        print('Its not a number. Please try again.')
-        # funcion renderizar vetana de advertencia
-        messagebox.showinfo(
-            "Ups!", "Did you enter a number? Please, try again.")
+            if (ord(Ascii_to_Uchr) > 90):
+                Ascii_to_Uchr = chr(97)
+            encryptMessage += Ascii_to_Uchr
+
+        elif(chr_to_Ascii >= 97 and chr_to_Ascii <= 122):  # lower
+            Ascii_to_Lchr = chr(chr_to_Ascii+key)
+            if ord(Ascii_to_Lchr) > 122:
+                Ascii_to_Lchr = chr(65)
+            encryptMessage += Ascii_to_Lchr
+
+    print(encryptMessage)
+    submitResult(encryptMessage)
 
 
 def gui_entry(frame_entry, message):
