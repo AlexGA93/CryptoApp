@@ -14,9 +14,6 @@ def hashing_methods(message, iterations):
     kd = hashlib.pbkdf2_hmac('sha256', b'password', b'salt', iterations)
     key_deri = binascii.hexlify(kd)
 
-    # key_derivation = str(key_deri)
-    # print(key_derivation)
-
     md5_digest = hash_md5.hexdigest()
     sha1_digest = hash_sha1.hexdigest()
     sha224_digest = hash_sha224.hexdigest()
@@ -26,19 +23,19 @@ def hashing_methods(message, iterations):
 
     # Type = tuple
     output = (" Input:  ", message,
-              "\n Output: \n md5: ", md5_digest,
-              "\n sha1: ", sha1_digest,
-              "\n sha224: ", sha224_digest,
-              "\n sha256: ", sha256_digest,
-              "\n sha384: ", sha384_digest,
-              "\n sha512: ", sha512_digest)
+              "\n Output: \nMD5:\n", md5_digest,
+              "\n SHA1:\n ", sha1_digest,
+              "\n SHA224:\n ", sha224_digest,
+              "\n SHA256:\n ", sha256_digest,
+              "\n SHA384:\n ", sha384_digest,
+              "\n SHA512:\n ", sha512_digest)
 
     # convert tuple to string
     str_data = ''.join(output)
     # convert key derivation into string
     k_d = key_deri.decode("utf-8")
 
-    result = str_data+"\n key derivation: "+k_d
+    result = str_data+"\n key derivation: \n"+k_d
 
     print(result)
 

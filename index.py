@@ -1,14 +1,11 @@
 # importing modules
-
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 from tkinter import StringVar, IntVar
 # -----------------------------------------------
-# importing encryption scripts
-# from [carpeta] import [script]
-#    [script].funcion()
 
+# importing scripts
 from AES_method import aes_method
 from Atbash import atbash
 from Blake import blake
@@ -19,7 +16,13 @@ from personal_algorithm import personal
 from TranspMod import transmod
 
 # -----------------------------------------------
-bg_gray = 'gray'
+# styles variables
+font_app = 'Times'
+bg_app = '#303F9F'  # 'gray26'
+bg_label = '#FF9800'
+fr_app = 'White'
+fr_label = 'blue'
+
 ipad_x1 = 200
 ipad_x2 = 1
 ipad_x3 = 1
@@ -27,45 +30,44 @@ ipad_y1 = 50
 ipad_y2 = 30
 ipad_y3 = 1
 
-height_button = 1
-width_button = 15
+# PopupScreen to enter keys
 
 
-def popupscreen(root):  # render to get additional data
-    #app = tk.Tk()
-    # pp.geometry("1x1")
+def popupScreen(root):
+
     answer = simpledialog.askinteger(
-        "Key", "Give me a key: ", parent=root)
+        "Key Neccessary", "Enter a key: ", parent=root)
     return answer
 
 
-# working with 'button's code', 'key' and label's text variable to update
 def methods(method, value, textlbl, root):
-    #
-    if method == 'AES':
+
+    if method == 'AES':  # if method's button is clicked, it submit a code
+        # calling to method's script with our messsage
         var = aes_method.encrypt(value)
-        textlbl.set(var)
+        textlbl.set(var)  # update output label's value
 
     if method == 'ATB':
         var = atbash.Atbash_encrypt(value)
         textlbl.set(var)
 
     if method == 'BLK':
-        f = popupscreen(root)
+        # if we need to enter a key, it'll be done by the function
+        f = popupScreen(root)
         var = blake.main(value, f)
         textlbl.set(var)
 
     if method == 'CAESAR':
-        g = popupscreen(root)  # additional data to Caesar's method
-        var = Caesar.caesar(value, g)  # caesar function from script
-        textlbl.set(var)  # updating label value
+        g = popupScreen(root)
+        var = Caesar.caesar(value, g)
+        textlbl.set(var)
 
     if method == 'FNT':
         var = Fernet.main(value)
         textlbl.set(var)
 
     if method == 'HSH':
-        h = popupscreen(root)
+        h = popupScreen(root)
         var = hash_method.hashing_methods(value, h)
         textlbl.set(var)
     if method == 'BNR':
@@ -73,81 +75,110 @@ def methods(method, value, textlbl, root):
         textlbl.set(var)
 
     if method == 'TRANS':
-        f = popupscreen(root)
+        f = popupScreen(root)
         var = transmod.encryption(value, f)
-        textlbl.set(var, font=("Helvetica", 9))
+        textlbl.set(var, font=(font_app, 2))
 
 
-def gui_quit(root):
-    # Quit Button
-    cancel = ttk.Button(root, text='Quit', command=quit).place(x=400, y=700)
+# function to reset entry and output values
+def resetFunction(text_entry, text_output):
+    # set default values to 'entry' and 'output'
+
+    entry_default = ' '
+    output_default = 'Data Ouput.'
+
+    # reset values
+    text_entry.set(entry_default)
+    text_output.set(output_default)
+
+# render function
 
 
 def gui_frames(root):
     # Label
     label = ttk.Label(root, text='Welcome To CryptoApp', font=(
-        "Helvetica", 16), background='#716060', anchor='center')
+        font_app, 16), background=bg_label, anchor='center')
     label.pack(fill=tk.BOTH)
 
     style_entry = ttk.Style()
-    style_entry.configure("Frame_entry.TFrame", background=bg_gray)
+    style_entry.configure("Frame_entry.TFrame", background=bg_app)
     # Frames
     frame_entry = ttk.Frame(root, style="Frame_entry.TFrame")
     frame_entry.pack(ipadx=ipad_x1, ipady=ipad_y1)
 
     style_buttns = ttk.Style()
-    style_buttns.configure("FrameB.TFrame", background=bg_gray)
+    style_buttns.configure("FrameB.TFrame", background=bg_app)
     frame_matrix = ttk.Frame(root, style='FrameB.TFrame')
     frame_matrix.pack(ipadx=ipad_x2, ipady=ipad_y2)
 
     # Frame Text(output)
     style_output = ttk.Style()
-    style_output.configure("Frame_output.TFrame", background=bg_gray)
+    style_output.configure("Frame_output.TFrame", background=bg_app)
     frame_output = ttk.Frame(root, style='Frame_output.TFrame')
     frame_output.pack(ipadx=ipad_x3, ipady=ipad_y3)
 
     # ---------------------------------------------------------------
-    label = ttk.Label(frame_entry, text="Insert Text here...", anchor='center')
+    label = ttk.Label(frame_entry, text="Insert Text here...",
+                      anchor='center', background=bg_app, foreground=bg_label,
+                      font=(font_app, 10))
     label.place(x=77, y=50)
 
     # INPUT
-    entry = ttk.Entry(frame_entry)
+    text_entry = StringVar()
+    text_entry.set('')
+
+    entry = ttk.Entry(frame_entry, textvariable=text_entry)
+    entry.xview("end")
     entry.place(x=180, y=50)
     # ---------------------------------------------------------------
     style_buttons = ttk.Style()
     style_buttons.configure("Style_buttons.TButton")
 
-    # Update label value?
-    text = StringVar()
-    text.set('Data Ouput')
+    # sustituir por elmento que permita scroll como un entry?
+    text_output = StringVar()
+    text_output.set('Data Ouput')
+
+    '''
     outputlbl = ttk.Label(frame_output, width=10,
-                          textvariable=text, font=("Helvetica", 10))
+                          textvariable=text_output, font=(font_app, 10), anchor='nw')
+    outputlbl.pack(ipadx=190, ipady=150)
+'''
+    scrollbar = tk.Scrollbar(orient="horizontal")
+
+    outputlbl = tk.Entry(frame_output, width=10, textvariable=text_output, font=(
+        font_app, 10), xscrollcommand=scrollbar.set)
+    outputlbl.focus()
     outputlbl.pack(ipadx=190, ipady=150)
 
+    scrollbar.pack(ipadx=196)
+    scrollbar.config(command=outputlbl.xview)
+
+    outputlbl.config()
     # buttons
+
     aesButton = ttk.Button(frame_matrix, text="AES",
-                           command=lambda: methods('AES', entry.get(), text, root))
+                           command=lambda: methods('AES', entry.get(), text_output, root))
 
     atbashButton = ttk.Button(frame_matrix, text="Atbash", command=lambda: methods(
-        'ATB', entry.get(), text, root))
+        'ATB', entry.get(), text_output, root))
 
     blakeButton = ttk.Button(frame_matrix, text="Blake", command=lambda: methods(
-        'BLK', entry.get(), text, root))
+        'BLK', entry.get(), text_output, root))
 
     caesarButton = ttk.Button(frame_matrix, text="Caesar",
-                              command=lambda: methods('CAESAR', entry.get(), text, root))
+                              command=lambda: methods('CAESAR', entry.get(), text_output, root))
 
     fernetButton = ttk.Button(frame_matrix, text="Fernet", command=lambda: methods(
-        'FNT', entry.get(), text, root))
+        'FNT', entry.get(), text_output, root))
 
     hashButton = ttk.Button(frame_matrix, text="Hash", command=lambda: methods(
-        'HSH', entry.get(), text, root))
+        'HSH', entry.get(), text_output, root))
 
     doubleBinButton = ttk.Button(frame_matrix, text="DoubleBin", command=lambda: methods(
-        'BNR', entry.get(), text, root))
+        'BNR', entry.get(), text_output, root))
 
     transpositionButton = ttk.Button(
-        frame_matrix, text="Transposition", command=lambda: methods('TRANS', entry.get(), text, root))
+        frame_matrix, text="Transposition", command=lambda: methods('TRANS', entry.get(), text_output, root))
 
     button9 = ttk.Button(frame_matrix, text="[Not Avaible]")
 
@@ -162,10 +193,17 @@ def gui_frames(root):
     button9.grid(row=2, column=2, padx=10, pady=10)
     # ---------------------------------------------------------------
 
+    # Reset Button
 
-def gui_functions(root):
-    gui_frames(root)
-    gui_quit(root)
+    tk.Button(root, text='Reset', command=lambda: resetFunction(
+        text_entry, text_output), background=bg_label, activeforeground=fr_app, activebackground="blue", height=1, width=10).place(x=20, y=700)
+
+    # Quit Button
+
+    tk.Button(
+        root, text='Cancel', command=quit, background=bg_label, activeforeground=fr_app, activebackground="red", height=1, width=10).place(x=400, y=700)
+
+# main function
 
 
 def main():
@@ -173,14 +211,31 @@ def main():
     root = tk.Tk()
     # Not Resizable
     root.resizable(False, False)
+
+    # Render at center's screen (aprox.)
+    # Gets the requested values of the height and widht.
+    winWidth = root.winfo_reqwidth()
+    winHeight = root.winfo_reqheight()
+    print("Width: {} \nHeight: {}".format(winWidth, winHeight))
+
+    # Gets both half the screen width/height and window width/height
+    posRight = int(root.winfo_screenwidth()/2 - (winWidth+500)/2)
+    posDown = int(root.winfo_screenheight()/2 - (winHeight+500)/2)
+    print("position right: {}, Position down: {}".format(
+        posRight, posDown))
+    # Positions the window in the center of the page.
+    root.geometry("+{}+{}".format(posRight, posDown))
+
     # giving window's size
     root.minsize(width=500, height=750)
+    # rendering at screen's center
+
     # Window Title
     root.title('CryptoApp')
     # background
-    root.configure(bg='gray')
+    root.configure(bg=bg_app)
     # calling methods
-    gui_functions(root)
+    gui_frames(root)
 
     root.mainloop()
 

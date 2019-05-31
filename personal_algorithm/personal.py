@@ -10,8 +10,6 @@ def toBinary(mensaje):
         if element == '100000':
             bynary_array[i] = ' '
 
-    # print(bynary_array)  # list
-
     # converting list to string
     string_array = ''.join(map(str, bynary_array))
     print(string_array)
