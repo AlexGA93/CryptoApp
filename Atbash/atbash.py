@@ -16,4 +16,9 @@ def Atbash_encrypt(message):
             c_message += ncrypt
         else:
             ncrypt += n
+
+    print(
+        "Atbash method \nMessage: {}, \nEncriptation: {}".format(
+            message, c_message)
+    )
     return c_message

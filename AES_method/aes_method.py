@@ -20,4 +20,8 @@ def encrypt(text):
     message = aes.encrypt(plaintext)
     message_str = str(message)
 
+    print(
+        "AES method \nMessage: {} \nEncriptation: {}".format(
+            message, message_str)
+    )
     return message_str

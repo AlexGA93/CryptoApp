@@ -18,4 +18,8 @@ def caesar(data, key):
                 Ascii_to_Lchr = chr(65)
             encryptMessage += Ascii_to_Lchr
 
+    print(
+        "Caesar method \nMessage: {}, \nKey: {}, \nEncriptation: {}".format(
+            data, key, encryptMessage)
+    )
     return encryptMessage

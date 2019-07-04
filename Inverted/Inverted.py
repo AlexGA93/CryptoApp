@@ -1,10 +1,10 @@
 
 
-def toBinary(mensaje):
-    # conversion to str
-    mensaje_binario = ' '.join(format(ord(x), 'b') for x in mensaje)
+def toBinary(message):
+    # Turn to str
+    m_bin = ' '.join(format(ord(x), 'b') for x in message)
     # conversion to list
-    bynary_array = mensaje_binario.split()
+    bynary_array = m_bin.split()
 
     for i, element in enumerate(bynary_array):
         if element == '100000':
@@ -24,4 +24,8 @@ def toBinary(mensaje):
             string_inverted += ' '
 
     # string_inverted
+    print(
+        "Inverted method \nMessage: {}, \nEncriptation: {}".format(
+            message, string_inverted)
+    )
     return string_inverted

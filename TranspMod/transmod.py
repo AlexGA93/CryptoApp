@@ -14,4 +14,8 @@ def encryption(message, key):
             # pointer to the next column element
             pointer += key
     # list into string and return
+    print(
+        "Transmod method \nMessage: {}, \nKey: {}, \nEncriptation: {}".format(
+            message, key, ciphermessage)
+    )
     return ''.join(ciphermessage)

@@ -74,4 +74,9 @@ def main(message, key):
 
     final_data = CRC(messageBin, polynomial)
 
+    print(
+        "CRC method \nMessage: {}, \nKey: {}, polynomial: {}, \nEncriptation: {}".format(
+            message, key, polynomial, final_data)
+    )
+
     return final_data

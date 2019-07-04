@@ -37,6 +37,9 @@ def hashing_methods(message, iterations):
 
     result = str_data+"\n key derivation: \n"+k_d
 
-    print(result)
+    print(
+        "Hash method \nMessage: {}, \nIterations: {},  \nEncriptation: {}".format(
+            message, iterations, result)
+    )
 
     return result

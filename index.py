@@ -12,7 +12,7 @@ from Blake import blake
 from Caesar import Caesar
 from Fernet import Fernet
 from Hash import hash_method
-from personal_algorithm import personal
+from Inverted import Inverted
 from TranspMod import transmod
 from CRC import CRC_method
 
@@ -73,7 +73,7 @@ def methods(method, value, textlbl, root):
         var = hash_method.hashing_methods(value, h)
         textlbl.set(var)
     if method == 'BNR':
-        var = personal.toBinary(value)
+        var = Inverted.toBinary(value)
         textlbl.set(var)
 
     if method == 'TRANS':

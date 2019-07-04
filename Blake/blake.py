@@ -49,5 +49,8 @@ def main(message, size):
     blake_2s = encrypt_blake2s(message, size)
 
     data = data_returned(blake_2b, blake_2s)  # string
-    print(data)
+    print(
+        "Blake method \nMessage: {}, \nSize: {}, \nEncriptation: {}".format(
+            message, size, data)
+    )
     return data

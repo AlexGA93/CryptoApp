@@ -21,5 +21,8 @@ def Encryption_Message(message, key):
 def main(message):
     key = Generate_key()
     encripted = Encryption_Message(message, key)
-
+    print(
+        "Fernet method \nMessage: {}, \nKey: {}, \nEncriptation: {}".format(
+            message, key, encripted)
+    )
     return encripted
