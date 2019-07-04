@@ -14,6 +14,7 @@ from Fernet import Fernet
 from Hash import hash_method
 from personal_algorithm import personal
 from TranspMod import transmod
+from CRC import CRC_method
 
 # -----------------------------------------------
 # styles variables
@@ -78,6 +79,11 @@ def methods(method, value, textlbl, root):
         f = popupScreen(root)
         var = transmod.encryption(value, f)
         textlbl.set(var, font=(font_app, 2))
+
+    if method == 'CRC':
+        j = popupScreen(root)
+        var = CRC_method.main(value, j)
+        textlbl.set(var)
 
 
 # function to reset entry and output values
@@ -180,7 +186,8 @@ def gui_frames(root):
     transpositionButton = ttk.Button(
         frame_matrix, text="Transposition", command=lambda: methods('TRANS', entry.get(), text_output, root))
 
-    button9 = ttk.Button(frame_matrix, text="[Not Avaible]")
+    button9 = ttk.Button(frame_matrix, text="CRC", command=lambda: methods(
+        'CRC', entry.get(), text_output, root))
 
     aesButton.grid(row=0, column=0, padx=10, pady=10)
     atbashButton.grid(row=0, column=1, padx=10, pady=10)
