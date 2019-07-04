@@ -38,6 +38,7 @@ def popupScreen(root):
 
     answer = simpledialog.askinteger(
         "Key Neccessary", "Enter a key: ", parent=root)
+    print(type(answer))
     return answer
 
 
@@ -143,12 +144,6 @@ def gui_frames(root):
     # sustituir por elmento que permita scroll como un entry?
     text_output = StringVar()
     text_output.set('Data Ouput')
-
-    '''
-    outputlbl = ttk.Label(frame_output, width=10,
-                          textvariable=text_output, font=(font_app, 10), anchor='nw')
-    outputlbl.pack(ipadx=190, ipady=150)
-'''
     scrollbar = tk.Scrollbar(orient="horizontal")
 
     outputlbl = tk.Entry(frame_output, width=10, textvariable=text_output, font=(

@@ -29,22 +29,22 @@ def xorFunc(plot, pol):
     return ''.join(resul)
 
 
-def divFunc(dividend, divisor):
-    lmessage = len(dividend)
+def divFunc(divident, divisor):
+    lmessage = len(divident)
     lkey = len(divisor)
 
     # Taking first bits as our divisor's length
-    tmp = dividend[0:lkey]
+    tmp = divident[0:lkey]
 
     while lkey < lmessage:
 
         if tmp[0] == "1":
             # updating tmp's value
-            tmp = xorFunc(divisor, tmp) + dividend[lkey]
+            tmp = xorFunc(divisor, tmp) + divident[lkey]
         else:
-            tmp = xorFunc(tmp, '0'*lkey) + dividend[lkey]
+            tmp = xorFunc(tmp, '0'*lkey) + divident[lkey]
 
-        lmessage += 1
+        lkey += 1
 
     if tmp[0] == '1':
         tmp = xorFunc(tmp, divisor)
@@ -63,8 +63,6 @@ def CRC(mssgBin, keyBin):
 
     return final_data
 
-# jdkfbnvjkdfvgbjkfnvjkfvjk
-
 
 def main(message, key):
     key_str = str(key)
@@ -75,9 +73,5 @@ def main(message, key):
     polynomial = polynomialMethod(key_str)
 
     final_data = CRC(messageBin, polynomial)
-
-    print('mensaje metido: {}, \nkey metida: {}, \nmensaje en binario: {}, \npolinomio generado: {} '.format(
-        message, key, messageBin, polynomial))
-    print("\nmensaje encriptado: "+final_data)
 
     return final_data
