@@ -63,6 +63,8 @@ def CRC(mssgBin, keyBin):
 
     return final_data
 
+# jdkfbnvjkdfvgbjkfnvjkfvjk
+
 
 def main(message, key):
     key_str = str(key)
