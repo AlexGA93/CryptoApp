@@ -45,6 +45,6 @@ We'll see a window with the button' matrix to choose any algorithm that we want 
 
 ##Screenshots
 
-![Screenshot](imgs/Capture1.png)
-![Screenshot](imgs/Capture2.png)
-![Screenshot](imgs/Capture3.png)
+![Optional Text](../master/imgs/Capture1.png)
+![Optional Text](../master/imgs/Capture2.png)
+![Optional Text](../master/imgs/Capture3.png)
