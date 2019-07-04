@@ -42,3 +42,9 @@ We'll see a window with the button' matrix to choose any algorithm that we want 
 -Pycrypt, hashlib(and more)
 -Inspiration: my taste for programming and data encryption
 -Practice to be better every day
+
+##Screenshots
+
+![Screenshot](imgs/Capture1.png)
+![Screenshot](imgs/Capture2.png)
+![Screenshot](imgs/Capture3.png)
