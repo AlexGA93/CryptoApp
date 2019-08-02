@@ -1,20 +1,20 @@
 # importing modules
+from CRC import CRC_method
+from TranspMod import transmod
+from Inverted import Inverted
+from Hash import hash_method
+from Fernet import Fernet
+from Caesar import Caesar
+from Blake import blake
+from Atbash import atbash
+from AES_method import aes_method
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 from tkinter import StringVar, IntVar
 # -----------------------------------------------
-
-# importing scripts
-from AES_method import aes_method
-from Atbash import atbash
-from Blake import blake
-from Caesar import Caesar
-from Fernet import Fernet
 from Hash import hash_method
-from Inverted import Inverted
-from TranspMod import transmod
-from CRC import CRC_method
+# importing scripts
 
 # -----------------------------------------------
 # styles variables
@@ -24,12 +24,14 @@ bg_label = '#FF9800'
 fr_app = 'White'
 fr_label = 'blue'
 
-ipad_x1 = 200
+ipad_x1 = 1
 ipad_x2 = 1
 ipad_x3 = 1
+ipad_x4 = 1
 ipad_y1 = 50
 ipad_y2 = 30
 ipad_y3 = 1
+ipad_y4 = 30
 
 # PopupScreen to enter keys
 
@@ -38,53 +40,59 @@ def popupScreen(root):
 
     answer = simpledialog.askinteger(
         "Key Neccessary", "Enter a key: ", parent=root)
-    print(type(answer))
     return answer
 
 
-def methods(method, value, textlbl, root):
+def update_text(text_widget, text):
+    text_widget.configure(state="normal")
+    text_widget.delete('1.0', tk.END)
+    text_widget.insert('1.0', text)
+    text_widget.configure(state="disabled")
 
-    if method == 'AES':  # if method's button is clicked, it submit a code
+
+def methods(method, value, text_widget, root):
+
+    if method == 'AES':  # elif method's button is clicked, it submit a code
         # calling to method's script with our messsage
         var = aes_method.encrypt(value)
-        textlbl.set(var)  # update output label's value
+        update_text(text_widget, var)  # update output label's value
 
-    if method == 'ATB':
+    elif method == 'ATB':
         var = atbash.Atbash_encrypt(value)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
-    if method == 'BLK':
-        # if we need to enter a key, it'll be done by the function
+    elif method == 'BLK':
+        # elif we need to enter a key, it'll be done by the function
         f = popupScreen(root)
         var = blake.main(value, f)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
-    if method == 'CAESAR':
+    elif method == 'CAESAR':
         g = popupScreen(root)
         var = Caesar.caesar(value, g)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
-    if method == 'FNT':
+    elif method == 'FNT':
         var = Fernet.main(value)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
-    if method == 'HSH':
+    elif method == 'HSH':
         h = popupScreen(root)
         var = hash_method.hashing_methods(value, h)
-        textlbl.set(var)
-    if method == 'BNR':
+        update_text(text_widget, var)
+    elif method == 'BNR':
         var = Inverted.toBinary(value)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
-    if method == 'TRANS':
+    elif method == 'TRANS':
         f = popupScreen(root)
         var = transmod.encryption(value, f)
         textlbl.set(var, font=(font_app, 2))
 
-    if method == 'CRC':
+    elif method == 'CRC':
         j = popupScreen(root)
         var = CRC_method.main(value, j)
-        textlbl.set(var)
+        update_text(text_widget, var)
 
 
 # function to reset entry and output values
@@ -96,7 +104,7 @@ def resetFunction(text_entry, text_output):
 
     # reset values
     text_entry.set(entry_default)
-    text_output.set(output_default)
+    update_text(text_output, output_default)
 
 # render function
 
@@ -128,33 +136,36 @@ def gui_frames(root):
     label = ttk.Label(frame_entry, text="Insert Text here...",
                       anchor='center', background=bg_app, foreground=bg_label,
                       font=(font_app, 10))
-    label.place(x=77, y=50)
-
+    label.pack(side="left")
     # INPUT
     text_entry = StringVar()
     text_entry.set('')
 
     entry = ttk.Entry(frame_entry, textvariable=text_entry)
-    entry.xview("end")
-    entry.place(x=180, y=50)
+    entry.pack(side="left")
     # ---------------------------------------------------------------
     style_buttons = ttk.Style()
     style_buttons.configure("Style_buttons.TButton")
 
     # sustituir por elmento que permita scroll como un entry?
-    text_output = StringVar()
-    text_output.set('Data Ouput')
-    scrollbar = tk.Scrollbar(orient="horizontal")
+    xscrollbar = tk.Scrollbar(frame_output, orient=tk.HORIZONTAL)
+    yscrollbar = tk.Scrollbar(frame_output)
 
-    outputlbl = tk.Entry(frame_output, width=10, textvariable=text_output, font=(
-        font_app, 10), xscrollcommand=scrollbar.set)
-    outputlbl.focus()
-    outputlbl.pack(ipadx=190, ipady=150)
+    text_output = tk.Text(frame_output,
+                          width=10,
+                          height=2,
+                          font=(font_app, 10),
+                          wrap=tk.NONE,
+                          xscrollcommand=xscrollbar.set,
+                          yscrollcommand=yscrollbar.set)
+    text_output.bind("<1>", lambda event: text_output.focus_set())
+    xscrollbar.config(command=text_output.xview)
+    yscrollbar.config(command=text_output.yview)
 
-    scrollbar.pack(ipadx=196)
-    scrollbar.config(command=outputlbl.xview)
-
-    outputlbl.config()
+    yscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+    xscrollbar.pack(side=tk.BOTTOM, fill=tk.X)
+    text_output.pack(expand=tk.TRUE, fill=tk.BOTH, ipadx=190, ipady=150)
+    update_text(text_output, "Data Output.")
     # buttons
 
     aesButton = ttk.Button(frame_matrix, text="AES",
