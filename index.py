@@ -87,7 +87,7 @@ def methods(method, value, text_widget, root):
     elif method == 'TRANS':
         f = popupScreen(root)
         var = transmod.encryption(value, f)
-        textlbl.set(var, font=(font_app, 2))
+        update_text(text_widget, var)
 
     elif method == 'CRC':
         j = popupScreen(root)
